@@ -14,6 +14,7 @@
 		9E966DFB23883C980060E605 /* MyContacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E966DF923883C980060E605 /* MyContacts.xcdatamodeld */; };
 		9E966DFD23883C990060E605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E966DFC23883C990060E605 /* Assets.xcassets */; };
 		9E966E0023883C990060E605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E966DFE23883C990060E605 /* LaunchScreen.storyboard */; };
+		9E966E0823883DD40060E605 /* MyContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E966E0723883DD40060E605 /* MyContactsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9E966DFC23883C990060E605 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E966DFF23883C990060E605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E966E0123883C990060E605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E966E0723883DD40060E605 /* MyContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				9E966DFE23883C990060E605 /* LaunchScreen.storyboard */,
 				9E966E0123883C990060E605 /* Info.plist */,
 				9E966DF923883C980060E605 /* MyContacts.xcdatamodeld */,
+				9E966E0723883DD40060E605 /* MyContactsTableViewController.swift */,
 			);
 			path = MyContacts;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E966DFB23883C980060E605 /* MyContacts.xcdatamodeld in Sources */,
+				9E966E0823883DD40060E605 /* MyContactsTableViewController.swift in Sources */,
 				9E966DF523883C980060E605 /* ViewController.swift in Sources */,
 				9E966DF123883C980060E605 /* AppDelegate.swift in Sources */,
 				9E966DF323883C980060E605 /* SceneDelegate.swift in Sources */,
@@ -298,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kenneth.MyContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -316,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kenneth.MyContacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
