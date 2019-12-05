@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class MyContactsTableViewController: UITableViewController {
     
@@ -45,6 +46,35 @@ class MyContactsTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
+    }
+    
+    func deleteStudent(item: Student){
+        context.delete(item)
+        do {
+            try context.save()
+        } catch {
+            print("Error deleting Contact from Core Data!")
+        }
+        loadStudents()
+        
+    }
+    
+    func studentDoneNotification () {
+        
+        var done = false
+        
+        if(students.count != students.count){
+            done = true
+        }
+        
+        if done == true {
+            let content = UNMutableNotificationContent()
+            content.title = "MyContacts"
+            content.body = "You have \(students.count) contacts!"
+            content.sound = UNNotificationSound.default
+            
+            
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -132,6 +162,54 @@ class MyContactsTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _ = tableView.dequeueReusableCell(withIdentifier: "MyContactsCell", for: indexPath)
+        
+        var fnameTextField = UITextField()
+        var lnameTextField = UITextField()
+        var emailTextField = UITextField()
+        
+        let alert = UIAlertController(title: "\(students[indexPath.row].fname!) \(students[indexPath.row].lname!)", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Change", style: .default, handler: { (action) in
+            
+            let student = self.students[indexPath.row]
+            
+            student.fname = fnameTextField.text
+            student.lname = lnameTextField.text
+            student.email = emailTextField.text
+            
+            self.saveStudents()
+            
+        } )
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (cancelAction) in
+        })
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        alert.addTextField(configurationHandler: { (field) in
+            fnameTextField = field
+            fnameTextField.text = self.students[indexPath.row].fname
+        })
+        alert.addTextField(configurationHandler: { (field) in
+            lnameTextField = field
+            lnameTextField.text = self.students[indexPath.row].lname
+        })
+        alert.addTextField(configurationHandler: { (field) in
+            emailTextField = field
+            emailTextField.text = self.students[indexPath.row].email
+        })
+        
+        present(alert, animated: true, completion: nil)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        studentDoneNotification()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -163,6 +241,8 @@ class MyContactsTableViewController: UITableViewController {
         return cell
     }
     
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -172,17 +252,16 @@ class MyContactsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let item = students [indexPath.row]
+            deleteStudent(item: item)
+        }
+        
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
